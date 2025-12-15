@@ -1,4 +1,4 @@
-<h3>Checking installation after running kind-cluster setup</h3>
+<h3>Checking installation after running install_kind.sh setup</h3>
 
     ubuntu@ip-172-31-46-155:~$ docker --version
     Docker version 28.2.2, build 28.2.2-0ubuntu1~24.04.1
