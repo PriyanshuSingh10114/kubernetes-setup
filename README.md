@@ -60,9 +60,53 @@
         tws-cluster-worker2         Ready    <none>          32m   v1.31.2
         tws-cluster-worker3         Ready    <none>          32m   v1.31.2
         ubuntu@ip-172-31-46-155:~/minikube$
-        
+
+
+<h3>To get namespaces</h3>
+
+    ubuntu@ip-172-31-46-155:~/kubernetes-in-one-shot$ kubectl get ns
+    NAME                 STATUS   AGE
+    default              Active   3h24m
+    kube-node-lease      Active   3h24m
+    kube-public          Active   3h24m
+    kube-system          Active   3h24m
+    local-path-storage   Active   3h24m
+    
 <h3>Setting Default Context</h3>
 
     kubectl config use-context kind-tws-cluster
+
+---
+
+    ubuntu@ip-172-31-46-155:~/kubernetes-in-one-shot$ kubectl get pods -n kube-system
+    NAME                                                READY   STATUS    RESTARTS        AGE
+    coredns-7c65d6cfc9-7zb4d                            1/1     Running   1 (8m41s ago)   3h28m
+    coredns-7c65d6cfc9-zv6gx                            1/1     Running   1 (8m41s ago)   3h28m
+    etcd-tws-cluster-control-plane                      1/1     Running   1 (8m41s ago)   3h28m
+    kindnet-2s6gh                                       1/1     Running   1 (8m41s ago)   3h28m
+    kindnet-b8zsp                                       1/1     Running   1 (8m41s ago)   3h28m
+    kindnet-jct5v                                       1/1     Running   1 (8m41s ago)   3h28m
+    kindnet-mqhrk                                       1/1     Running   1 (8m41s ago)   3h28m
+    kube-apiserver-tws-cluster-control-plane            1/1     Running   1 (8m41s ago)   3h28m
+    kube-controller-manager-tws-cluster-control-plane   1/1     Running   1 (8m41s ago)   3h28m
+    kube-proxy-7xdgl                                    1/1     Running   1 (8m41s ago)   3h28m
+    kube-proxy-l7lkh                                    1/1     Running   1 (8m41s ago)   3h28m
+    kube-proxy-qgxdl                                    1/1     Running   1 (8m41s ago)   3h28m
+    kube-proxy-tcxm2                                    1/1     Running   1 (8m41s ago)   3h28m
+    kube-scheduler-tws-cluster-control-plane            1/1     Running   1 (8m41s ago)   3h28m
+    
+    ubuntu@ip-172-31-46-155:~/kubernetes-in-one-shot$ kubectl create ns nginx
+    namespace/nginx created
+    
+    ubuntu@ip-172-31-46-155:~/kubernetes-in-one-shot$ kubectl run nginx --image=nginx
+    pod/nginx created
+    
+    ubuntu@ip-172-31-46-155:~/kubernetes-in-one-shot$ kubectl get pods
+    NAME    READY   STATUS    RESTARTS   AGE
+    nginx   1/1     Running   0          55s
+    ubuntu@ip-172-31-46-155:~/kubernetes-in-one-shot$ kubectl delete pod nginx
+    pod "nginx" deleted from default namespace
+    
+    ubuntu@ip-172-31-46-155:~/kubernetes-in-one-shot$
 
 
