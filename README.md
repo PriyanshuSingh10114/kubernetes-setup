@@ -109,4 +109,38 @@
     
     ubuntu@ip-172-31-46-155:~/kubernetes-in-one-shot$
 
+<h3>Deployment.yml</h3>
+    
+    ubuntu@ip-172-31-46-155:~/kubernetes-in-one-shot/nginx$ vim deployment.yml
+    
+    ubuntu@ip-172-31-46-155:~/kubernetes-in-one-shot/nginx$ kubectl apply -f deployment.yml
+    deployment.apps/nginx-deployment created
+    
+    ubuntu@ip-172-31-46-155:~/kubernetes-in-one-shot/nginx$ kubectl get deployment -n nginx
+    NAME               READY   UP-TO-DATE   AVAILABLE   AGE
+    nginx-deployment   2/2     2            2           4m51s
+    
+    ubuntu@ip-172-31-46-155:~/kubernetes-in-one-shot/nginx$ kubectl get pods -n nginx
+    NAME                                READY   STATUS    RESTARTS   AGE
+    nginx-deployment-54b9c68f67-b46jv   1/1     Running   0          5m13s
+    nginx-deployment-54b9c68f67-bcn6q   1/1     Running   0          5m13s
+    
+    ubuntu@ip-172-31-46-155:~/kubernetes-in-one-shot/nginx$ kubectl scale deployment/nginx-deployment -n nginx --replicas=5
+    deployment.apps/nginx-deployment scaled
+    
+    ubuntu@ip-172-31-46-155:~/kubernetes-in-one-shot/nginx$ kubectl get pods -n nginx
+    NAME                                READY   STATUS    RESTARTS   AGE
+    nginx-deployment-54b9c68f67-b46jv   1/1     Running   0          5m56s
+    nginx-deployment-54b9c68f67-bcn6q   1/1     Running   0          5m56s
+    nginx-deployment-54b9c68f67-h2wvc   1/1     Running   0          4s
+    nginx-deployment-54b9c68f67-rl4jg   1/1     Running   0          4s
+    nginx-deployment-54b9c68f67-rp79h   1/1     Running   0          4s
+    
+    ubuntu@ip-172-31-46-155:~/kubernetes-in-one-shot/nginx$ kubectl scale deployment/nginx-deployment -n nginx --replicas=1
+    deployment.apps/nginx-deployment scaled
+    
+    ubuntu@ip-172-31-46-155:~/kubernetes-in-one-shot/nginx$ kubectl get pods -n nginx
+    NAME                                READY   STATUS    RESTARTS   AGE
+    nginx-deployment-54b9c68f67-bcn6q   1/1     Running   0          6m57s
+    ubuntu@ip-172-31-46-155:~/kubernetes-in-one-shot/nginx$
 
