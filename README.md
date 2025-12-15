@@ -50,4 +50,15 @@
         tws-cluster-worker          Ready    <none>          7m14s   v1.31.2
         tws-cluster-worker2         Ready    <none>          7m14s   v1.31.2
         tws-cluster-worker3         Ready    <none>          7m15s   v1.31.2
+        
+<h3>Context switching in cluster if we have oth minikube and kind cluster installed</h3>
+
+        ubuntu@ip-172-31-46-155:~/minikube$ kubectl get nodes --context kind-tws-cluster
+        NAME                        STATUS   ROLES           AGE   VERSION
+        tws-cluster-control-plane   Ready    control-plane   32m   v1.31.2
+        tws-cluster-worker          Ready    <none>          32m   v1.31.2
+        tws-cluster-worker2         Ready    <none>          32m   v1.31.2
+        tws-cluster-worker3         Ready    <none>          32m   v1.31.2
+        ubuntu@ip-172-31-46-155:~/minikube$
+
 
