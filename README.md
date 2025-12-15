@@ -60,5 +60,9 @@
         tws-cluster-worker2         Ready    <none>          32m   v1.31.2
         tws-cluster-worker3         Ready    <none>          32m   v1.31.2
         ubuntu@ip-172-31-46-155:~/minikube$
+        
+<h3>Setting Default Context</h3>
+
+    kubectl config use-context kind-tws-cluster
 
 
