@@ -144,3 +144,20 @@
     nginx-deployment-54b9c68f67-bcn6q   1/1     Running   0          6m57s
     ubuntu@ip-172-31-46-155:~/kubernetes-in-one-shot/nginx$
 
+<h3> to see detailed pods and seting an image</h3>
+
+        ubuntu@ip-172-31-46-155:~/kubernetes-in-one-shot/nginx$ kubectl get pods -n nginx -o wide
+        NAME                                READY   STATUS             RESTARTS   AGE   IP           NODE                  NOMINATED NODE   READINESS GATES
+        nginx-deployment-54b9c68f67-bcn6q   1/1     Running            0          14m   10.244.3.3   tws-cluster-worker2   <none>           <none>
+        nginx-deployment-674bfdc47c-t7pvt   0/1     ImagePullBackOff   0          79s   10.244.2.5   tws-cluster-worker    <none>           <none>
+        
+        ubuntu@ip-172-31-46-155:~/kubernetes-in-one-shot/nginx$ kubectl set image deployment/nginx-deployment -n nginx nginx=nginx:1.27.3
+        deployment.apps/nginx-deployment image updated
+        
+        ubuntu@ip-172-31-46-155:~/kubernetes-in-one-shot/nginx$ kubectl get pods -n nginx -o wide
+        NAME                                READY   STATUS              RESTARTS   AGE   IP           NODE                  NOMINATED NODE   READINESS GATES
+        nginx-deployment-54b9c68f67-bcn6q   1/1     Running             0          15m   10.244.3.3   tws-cluster-worker2   <none>           <none>
+        nginx-deployment-56d496645f-47x2v   0/1     ContainerCreating   0          4s    <none>       tws-cluster-worker3   <none>           <none>
+        ubuntu@ip-172-31-46-155:~/kubernetes-in-one-shot/nginx$
+
+
